@@ -4,9 +4,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
   const [change, setChange] = useState("");
   const [draftCheck, setDraftCheck] = useState(false);
 
-  // console.log(draftCheck);
   function changeHandler(e) {
-    // console.log(change);
     setChange((change) => ({
       ...change,
       [e.target.name]: e.target.value,
@@ -15,7 +13,6 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
 
   function checkBox(e) {
     setDraftCheck(e.target.checked);
-    // console.log(draftCheck);
   }
 
   function submitBtn(e) {
@@ -49,14 +46,17 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
       <form onSubmit={submitBtn}>
         <div className="row">
           <div className="col-md-9">
-            <label for="subject" class="form-label text-left">
+            <label
+              for="subject"
+              class="form-label d-flex justify-content-start"
+            >
               Subject Name
             </label>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-9">
+        <div className="row mt-2">
+          <div className="col-md-10">
             <input
               type="text"
               onChange={changeHandler}
@@ -66,7 +66,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
               class="form-control"
             />
           </div>
-          <div className="col-md-3 d-flex align-items-center">
+          <div className="col-md-2 d-flex align-items-center">
             <input
               class="form-check-input"
               type="checkbox"
@@ -81,32 +81,47 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-4"></div>
+        <div className="row mt-2">
+          <div className="col-md-4 ">
+            <label for="date" class="form-label d-flex justify-content-start">
+              Date
+            </label>
+            <input
+              type="date"
+              onChange={changeHandler}
+              placeholder="Enter task..."
+              name="date"
+              id="date"
+              class="form-control"
+            />
+          </div>
         </div>
-        <label for="date" class="form-label">
-          Date
-        </label>
-        <input
-          type="date"
-          onChange={changeHandler}
-          placeholder="Enter task..."
-          name="date"
-          id="date"
-          class="form-control"
-        />
-        <label for="comments" class="form-label">
-          Lesson Content
-        </label>
-        <textarea
-          name="comments"
-          onChange={changeHandler}
-          class="form-control"
-          id="comments"
-        />
-        <button type="submit" class="btn btn-primary mt-3">
-          Save
-        </button>
+
+        <div className="row mt-2">
+          <div className="col-md-12">
+            <label
+              for="comments"
+              class="form-label d-flex justify-content-start"
+            >
+              Lesson Content
+            </label>
+            <textarea
+              name="content"
+              onChange={changeHandler}
+              class="form-control"
+              id="content"
+              rows="10"
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12 d-flex justify-content-end">
+            <button type="submit" class="btn mt-3 btn-primary btn-block ">
+              Save
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

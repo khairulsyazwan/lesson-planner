@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+tr:hover {
+  background-color: rgba(137, 196, 244, 0.5);
+}

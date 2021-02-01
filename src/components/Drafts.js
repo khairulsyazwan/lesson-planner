@@ -1,11 +1,12 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React from "react";
 
-function List({ lessons, drafts }) {
+function Drafts({ drafts }) {
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12">
+          <h2>Drafts</h2>
           <table class="table">
             <thead>
               <tr>
@@ -14,11 +15,11 @@ function List({ lessons, drafts }) {
               </tr>
             </thead>
             <tbody>
-              {lessons.map((lesson) => {
+              {drafts.map((draft) => {
                 return (
-                  <tr key={lesson.id} id={lesson.id}>
-                    <td>{lesson.subject}</td>
-                    <td>{moment(lesson.date).format("DD MMM YYYY")}</td>
+                  <tr key={draft.id} id={draft.id}>
+                    <td>{draft.subject}</td>
+                    <td>{moment(draft.date).format("DD MMM YYYY")}</td>
                   </tr>
                 );
               })}
@@ -30,4 +31,4 @@ function List({ lessons, drafts }) {
   );
 }
 
-export default List;
+export default Drafts;
