@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddNew from "./components/AddNew";
 import List from "./components/List";
 import Header from "./components/Header";
@@ -35,6 +35,13 @@ function App() {
   const [draftDisplay, setDraftDisplay] = useState(false);
   const [singleDisplay, setSingleDisplay] = useState(false);
   const [selected, setSelected] = useState([]);
+
+  useEffect(() => {
+    let a = localStorage.getItem("lessons");
+    a && setLessons(JSON.parse(a));
+    let b = localStorage.getItem("drafts");
+    b && setDrafts(JSON.parse(b));
+  }, []);
 
   function toggleDraftDisplay() {
     setDraftDisplay(!draftDisplay);

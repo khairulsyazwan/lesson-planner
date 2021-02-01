@@ -29,15 +29,17 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
       cTemp = { ...change, draft: draftCheck, id: `d${drafts.length + 1}` };
       let temp = [...drafts];
       temp = [...temp, cTemp];
-      console.log(temp);
+      // console.log(temp);
       setDrafts(temp);
+      localStorage.setItem("drafts", JSON.stringify(temp));
     } else {
       let cTemp = { ...change };
       cTemp = { ...change, draft: draftCheck, id: `l${lessons.length + 1}` };
       let temp = [...lessons];
       temp = [...temp, cTemp];
-      console.log(temp);
+      // console.log(temp);
       setLessons(temp);
+      localStorage.setItem("lessons", JSON.stringify(temp));
     }
   }
 
