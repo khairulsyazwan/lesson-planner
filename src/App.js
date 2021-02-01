@@ -9,27 +9,25 @@ function App() {
   const [lessons, setLessons] = useState([]);
   const [drafts, setDrafts] = useState([]);
 
-  function addLesson(change) {
-    if (change.draft) {
-      let temp = [...drafts];
-      temp = [...temp, change];
-      setDrafts(temp);
-    } else {
-      let temp = [...lessons];
-      temp = [...temp, change];
-      setLessons(temp);
-    }
-  }
   return (
     <div className="App">
       <Header />
-      <AddNew
-        setLessons={setLessons}
-        lessons={lessons}
-        addLesson={addLesson}
-        drafts={drafts}
-      />
-      <List lessons={lessons} drafts={drafts} />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <List lessons={lessons} drafts={drafts} />
+          </div>
+
+          <div className="col-md-8">
+            <AddNew
+              setLessons={setLessons}
+              lessons={lessons}
+              drafts={drafts}
+              setDrafts={setDrafts}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
