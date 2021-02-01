@@ -1,10 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 import AddNew from "./components/AddNew";
 import List from "./components/List";
 import Header from "./components/Header";
 import Drafts from "./components/Drafts";
+import Lessons from "./components/Lessons";
 
 function App() {
   const [lessons, setLessons] = useState([
@@ -33,6 +33,36 @@ function App() {
   const [drafts, setDrafts] = useState([]);
   const [formDisplay, setFormDisplay] = useState(true);
   const [draftDisplay, setDraftDisplay] = useState(false);
+  const [singleDisplay, setSingleDisplay] = useState(false);
+  const [selected, setSelected] = useState([]);
+
+  function toggleDraftDisplay() {
+    setDraftDisplay(!draftDisplay);
+  }
+
+  function toggleFormDisplay() {
+    setFormDisplay(!formDisplay);
+    setSingleDisplay(false);
+  }
+
+  function selectOne(e) {
+    let select = e.target.classList.value;
+    if (select.includes("l")) {
+      let res = lessons.filter(function (el) {
+        return el.id === select;
+      });
+      setSelected(res);
+      setSingleDisplay(true);
+      setFormDisplay(false);
+    } else {
+      let res = drafts.filter(function (el) {
+        return el.id === select;
+      });
+      setSelected(res);
+      setSingleDisplay(true);
+      setFormDisplay(false);
+    }
+  }
 
   return (
     <div className="App">
@@ -40,23 +70,55 @@ function App() {
 
       <div className="row mt-2">
         <div className="col-md-5">
-          <List lessons={lessons} drafts={drafts} />
-          <Drafts drafts={drafts} />
+          {!draftDisplay && (
+            <List lessons={lessons} drafts={drafts} selectOne={selectOne} />
+          )}
+          {draftDisplay && <Drafts drafts={drafts} selectOne={selectOne} />}
+
           <div className="row">
-            <button className="btn btn-primary btn-block">Add New</button>
-          </div>
-          <div className="row mt-2">
-            <button className="btn btn-info btn-block">View Drafts</button>
+            <div className="container">
+              <div>
+                {!formDisplay && (
+                  <button
+                    className="btn btn-primary btn-block"
+                    onClick={toggleFormDisplay}
+                  >
+                    Add New
+                  </button>
+                )}
+              </div>
+              <div className="mt-2">
+                {draftDisplay ? (
+                  <button
+                    className="btn btn-info btn-block"
+                    onClick={toggleDraftDisplay}
+                  >
+                    View Lessons ({lessons.length})
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-info btn-block"
+                    onClick={toggleDraftDisplay}
+                  >
+                    View Drafts ({drafts.length})
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="col-md-7">
-          <AddNew
-            setLessons={setLessons}
-            lessons={lessons}
-            drafts={drafts}
-            setDrafts={setDrafts}
-          />
+          {formDisplay && (
+            <AddNew
+              setLessons={setLessons}
+              lessons={lessons}
+              drafts={drafts}
+              setDrafts={setDrafts}
+            />
+          )}
+
+          {singleDisplay && <Lessons lesson={selected} />}
         </div>
       </div>
     </div>

@@ -37,6 +37,16 @@
   }
 }
 
-tr:hover {
+tr.table:hover {
   background-color: rgba(137, 196, 244, 0.5);
+}
+
+h5 {
+  text-align: left;
+  text-decoration: underline;
+}
+
+h6,
+h4 {
+  text-align: left;
 }

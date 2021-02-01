@@ -4,7 +4,7 @@ function Header() {
   return (
     <div>
       <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">Lesson Planner</span>
+        <span class="navbar-brand mx-3 mb-0 h1">Lesson Planner</span>
       </nav>
     </div>
   );

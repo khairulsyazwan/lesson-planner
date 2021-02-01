@@ -1,7 +1,7 @@
 import moment from "moment";
 import React from "react";
 
-function Drafts({ drafts }) {
+function Drafts({ drafts, selectOne }) {
   return (
     <div className="container">
       <div className="row">
@@ -17,9 +17,16 @@ function Drafts({ drafts }) {
             <tbody>
               {drafts.map((draft) => {
                 return (
-                  <tr key={draft.id} id={draft.id}>
-                    <td>{draft.subject}</td>
-                    <td>{moment(draft.date).format("DD MMM YYYY")}</td>
+                  <tr
+                    key={draft.id}
+                    id={draft.id}
+                    className="table"
+                    onClick={selectOne}
+                  >
+                    <td className={draft.id}>{draft.subject}</td>
+                    <td className={draft.id}>
+                      {moment(draft.date).format("DD MMM YYYY")}
+                    </td>
                   </tr>
                 );
               })}

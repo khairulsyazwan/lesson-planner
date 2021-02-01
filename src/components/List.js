@@ -1,7 +1,7 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React from "react";
 
-function List({ lessons, drafts }) {
+function List({ lessons, selectOne }) {
   return (
     <div className="container">
       <div className="row">
@@ -16,9 +16,16 @@ function List({ lessons, drafts }) {
             <tbody>
               {lessons.map((lesson) => {
                 return (
-                  <tr key={lesson.id} id={lesson.id}>
-                    <td>{lesson.subject}</td>
-                    <td>{moment(lesson.date).format("DD MMM YYYY")}</td>
+                  <tr
+                    key={lesson.id}
+                    id={lesson.id}
+                    className="table"
+                    onClick={selectOne}
+                  >
+                    <td className={lesson.id}>{lesson.subject}</td>
+                    <td className={lesson.id}>
+                      {moment(lesson.date).format("DD MMM YYYY")}
+                    </td>
                   </tr>
                 );
               })}
