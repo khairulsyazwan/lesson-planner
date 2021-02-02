@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-color: rgba(202, 201, 201, 0.986);
+  background-color: rgba(218, 223, 225, 1);
+  height: 100vh;
 }
 
 .App-logo {
@@ -53,7 +54,7 @@ h4 {
 }
 
 i:hover {
-  color: rgb(17, 17, 179);
+  color: rgba(68, 108, 179, 1);
   cursor: pointer;
 }
 
@@ -64,4 +65,32 @@ tr {
 
 .comp {
   height: calc(100vh - 100px);
+}
+
+.btn-primary {
+  background-color: rgba(44, 130, 201, 1);
+}
+
+.btn-danger {
+  background-color: rgb(214, 69, 65);
+}
+
+.drafts {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 700px) {
+  .comp {
+    height: 100%;
+    margin-bottom: 100px;
+  }
+  .App {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .App {
+    height: 100%;
+  }
 }

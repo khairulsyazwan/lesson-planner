@@ -58,7 +58,7 @@ function List({ lessons, selectOne, setLessons }) {
     <div>
       <div className="row">
         <div className="col-md-12">
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-end mb-2">
             <div>Sort By:</div>
             <div className="mx-2">
               <i

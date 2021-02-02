@@ -7,8 +7,10 @@ function Lessons({
   toggleForm,
   drafts,
   setDrafts,
+  setEdit,
+  edit,
 }) {
-  function removeLesson(id) {
+  function removeLesson() {
     if (lesson[0].draft) {
       let mod = [...drafts];
       let index = mod.indexOf(lesson[0]);
@@ -26,6 +28,10 @@ function Lessons({
     }
   }
 
+  function editBtn() {
+    setEdit(lesson);
+    toggleForm();
+  }
   return (
     <div className="mt-2">
       {lesson.map((lesson) => {
@@ -39,12 +45,11 @@ function Lessons({
             <h5>Lesson Content</h5>
             <h6>{lesson.content}</h6>
 
-            <div className="d-flex justify-content-start my-3">
-              <button className="btn btn-primary mr-2">Edit</button>
-              <button
-                className="btn btn-danger mx-2"
-                onClick={() => removeLesson(lesson.id)}
-              >
+            <div className="d-flex justify-content-start my-5">
+              <button className="btn btn-primary mr-2" onClick={editBtn}>
+                Edit
+              </button>
+              <button className="btn btn-danger mx-2" onClick={removeLesson}>
                 Delete
               </button>
             </div>

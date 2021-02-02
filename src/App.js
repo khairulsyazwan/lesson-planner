@@ -35,6 +35,7 @@ function App() {
   const [draftDisplay, setDraftDisplay] = useState(false);
   const [singleDisplay, setSingleDisplay] = useState(false);
   const [selected, setSelected] = useState([]);
+  const [edit, setEdit] = useState("");
 
   useEffect(() => {
     let a = localStorage.getItem("lessons");
@@ -54,7 +55,6 @@ function App() {
 
   function selectOne(e) {
     let select = e.target.classList.value;
-
     let resDraft = drafts.filter(function (el) {
       return el.id === select;
     });
@@ -70,13 +70,18 @@ function App() {
     setFormDisplay(false);
   }
 
+  function editClear() {
+    setEdit("");
+    toggleFormDisplay();
+  }
+
   return (
-    <div className="App vh-100">
+    <div className="App">
       <Header />
 
       <div className="container-fluid">
         <div className="row my-3">
-          <div className="col-md-5">
+          <div className="col-lg-5">
             <div
               className="container my-2 py-3 border-dark rounded comp"
               style={{
@@ -94,28 +99,28 @@ function App() {
               {draftDisplay && <Drafts drafts={drafts} selectOne={selectOne} />}
 
               <div className="row">
-                <div className="container">
+                <div className="container mt-2">
                   <div>
                     {!formDisplay && (
                       <button
-                        className="btn btn-primary btn-block"
-                        onClick={toggleFormDisplay}
+                        className="btn btn-primary col-12"
+                        onClick={editClear}
                       >
                         Add New
                       </button>
                     )}
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-3">
                     {draftDisplay ? (
                       <button
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary col-12"
                         onClick={toggleDraftDisplay}
                       >
                         View Lessons ({lessons.length})
                       </button>
                     ) : (
                       <button
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary col-12"
                         onClick={toggleDraftDisplay}
                       >
                         View Drafts ({drafts.length})
@@ -127,7 +132,7 @@ function App() {
             </div>
           </div>
 
-          <div className="col-md-7">
+          <div className="col-lg-7">
             <div
               className="container my-2 py-3 border-dark rounded comp"
               style={{ backgroundColor: "white" }}
@@ -138,6 +143,11 @@ function App() {
                   lessons={lessons}
                   drafts={drafts}
                   setDrafts={setDrafts}
+                  edit={edit}
+                  setEdit={setEdit}
+                  setSelected={setSelected}
+                  setSingleDisplay={setSingleDisplay}
+                  setFormDisplay={setFormDisplay}
                 />
               )}
 
@@ -149,6 +159,8 @@ function App() {
                   toggleForm={toggleFormDisplay}
                   drafts={drafts}
                   setDrafts={setDrafts}
+                  setEdit={setEdit}
+                  edit={edit}
                 />
               )}
             </div>

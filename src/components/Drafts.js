@@ -3,10 +3,10 @@ import React from "react";
 
 function Drafts({ drafts, selectOne }) {
   return (
-    <div className="container">
+    <div>
       <div className="row">
         <div className="col-md-12">
-          <h2>Drafts</h2>
+          <h2 className="drafts">Drafts</h2>
           <table className="table">
             <thead>
               <tr>
