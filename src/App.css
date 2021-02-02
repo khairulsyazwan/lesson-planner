@@ -83,6 +83,10 @@ tr {
   text-decoration: underline;
 }
 
+textarea {
+  height: 180px;
+}
+
 @media only screen and (max-width: 700px) {
   .comp {
     height: 100%;

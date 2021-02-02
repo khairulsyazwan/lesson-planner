@@ -109,6 +109,9 @@ function AddNew({
     }
   }
 
+  if (window.innerHeight < 700) {
+    console.log("ok go");
+  }
   return (
     <div className="">
       <form onSubmit={edit ? editBtn : submitBtn}>
@@ -188,7 +191,7 @@ function AddNew({
               onChange={changeHandler}
               className="form-control"
               id="content"
-              rows={window.innerHeight < 900 ? 10 : 20}
+              rows="20"
               defaultValue={edit ? edit[0].content : null}
               required
             />
