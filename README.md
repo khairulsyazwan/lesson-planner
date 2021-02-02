@@ -1,6 +1,6 @@
 # Lesson Planner
 
-Project is hosted [here](https://github.com/facebook/create-react-app).
+Project is hosted [here](https://khairulsyazwan.github.io/lesson-planner/).
 
 ## User Stories
 
