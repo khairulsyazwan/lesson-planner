@@ -81,8 +81,8 @@ function App() {
 
       <div className="container-fluid">
         <div className="row my-3">
-          <div className="col-lg-5">
-            <div className="container my-2 py-3 border-dark rounded comp">
+          <div className="col-md-5">
+            <div className="container py-3 border-dark rounded comp">
               {!draftDisplay && (
                 <List
                   lessons={lessons}
@@ -127,8 +127,8 @@ function App() {
             </div>
           </div>
 
-          <div className="col-lg-7">
-            <div className="container my-2 py-3 border-dark rounded comp">
+          <div className="col-md-7 form-container">
+            <div className="container py-3 border-dark rounded comp">
               {formDisplay && (
                 <AddNew
                   setLessons={setLessons}

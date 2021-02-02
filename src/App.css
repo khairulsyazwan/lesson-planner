@@ -68,6 +68,7 @@ tr {
   height: calc(100vh - 100px);
   box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
   background-color: white;
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .btn-primary {
@@ -85,10 +86,15 @@ tr {
 @media only screen and (max-width: 700px) {
   .comp {
     height: 100%;
-    margin-bottom: 100px;
   }
   .App {
     height: 100%;
+  }
+  .form-container {
+    margin: 1rem 0 1rem 0;
+  }
+  .draft-check {
+    margin: 1rem 0 1rem 0;
   }
 }
 

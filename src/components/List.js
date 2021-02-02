@@ -113,10 +113,12 @@ function List({ lessons, selectOne, setLessons }) {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="col-md-7">
+                <th scope="col" className="col-lg-7">
                   Subject
                 </th>
-                <th scope="col">Date</th>
+                <th scope="col" className="col-lg-5">
+                  Date
+                </th>
               </tr>
             </thead>
             <tbody>

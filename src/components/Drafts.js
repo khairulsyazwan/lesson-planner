@@ -10,10 +10,12 @@ function Drafts({ drafts, selectOne }) {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="col-md-8">
+                <th scope="col" className="col-lg-7">
                   Subject
                 </th>
-                <th scope="col">Date</th>
+                <th scope="col" className="col-lg-7">
+                  Date
+                </th>
               </tr>
             </thead>
             <tbody>

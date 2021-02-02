@@ -19,19 +19,11 @@ function AddNew({
   let updatedLessons = lessons;
   let updatedDrafts = drafts;
 
-  console.log(window.innerHeight);
   useEffect(() => {
     setChange(edit[0]);
   }, [edit]);
 
   function changeHandler(e) {
-    setChange((change) => ({
-      ...change,
-      [e.target.name]: e.target.value,
-    }));
-  }
-
-  function editChangeHandler(e) {
     setChange((change) => ({
       ...change,
       [e.target.name]: e.target.value,
@@ -45,7 +37,7 @@ function AddNew({
   function submitBtn(e) {
     e.preventDefault();
     e.target.reset();
-    addLesson(change);
+    addLesson();
     setChange("");
     setDraftCheck(false);
   }
@@ -122,29 +114,40 @@ function AddNew({
       <form onSubmit={edit ? editBtn : submitBtn}>
         <div className="row">
           <div className="col-md-9 mt-2">
-            <label
-              for="subject"
-              className="form-label d-flex justify-content-start"
-            >
+            <label className="form-label d-flex justify-content-start">
               Subject Name
             </label>
           </div>
         </div>
 
         <div className="row mt-1">
-          <div className="col-md-10">
-            <input
-              type="text"
-              onChange={edit ? editChangeHandler : changeHandler}
-              placeholder="Enter subject..."
-              name="subject"
-              id="subject"
-              className="form-control"
-              defaultValue={edit ? edit[0].subject : null}
-              required
-            />
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="col-9">
+              <input
+                type="text"
+                onChange={changeHandler}
+                placeholder="Enter subject..."
+                name="subject"
+                id="subject"
+                className="form-control"
+                defaultValue={edit ? edit[0].subject : null}
+                required
+              />
+            </div>
+
+            <div className="col-3">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="draft"
+                name="draft"
+                checked={draftCheck}
+                onChange={checkBox}
+              />
+              <label className="form-check-label mx-2">Draft</label>
+            </div>
           </div>
-          <div className="col-md-2 d-flex align-items-center">
+          {/* <div className="col-lg-2 d-flex align-items-center draft-check">
             <input
               className="form-check-input"
               type="checkbox"
@@ -153,23 +156,18 @@ function AddNew({
               checked={draftCheck}
               onChange={checkBox}
             />
-            <label className="form-check-label" for="draft">
-              Draft
-            </label>
-          </div>
+            <label className="form-check-label">Draft</label>
+          </div> */}
         </div>
 
         <div className="row mt-4">
           <div className="col-md-6">
-            <label
-              for="date"
-              className="form-label d-flex justify-content-start"
-            >
+            <label className="form-label d-flex justify-content-start">
               Date
             </label>
             <input
               type="date"
-              onChange={edit ? editChangeHandler : changeHandler}
+              onChange={changeHandler}
               placeholder="Enter task..."
               name="date"
               id="date"
@@ -182,15 +180,12 @@ function AddNew({
 
         <div className="row mt-4">
           <div className="col-md-12">
-            <label
-              for="comments"
-              className="form-label d-flex justify-content-start"
-            >
+            <label className="form-label d-flex justify-content-start">
               Lesson Content
             </label>
             <textarea
               name="content"
-              onChange={edit ? editChangeHandler : changeHandler}
+              onChange={changeHandler}
               className="form-control"
               id="content"
               rows={window.innerHeight < 900 ? 10 : 20}
