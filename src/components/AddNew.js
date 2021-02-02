@@ -150,17 +150,6 @@ function AddNew({
               <label className="form-check-label mx-2">Draft</label>
             </div>
           </div>
-          {/* <div className="col-lg-2 d-flex align-items-center draft-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="draft"
-              name="draft"
-              checked={draftCheck}
-              onChange={checkBox}
-            />
-            <label className="form-check-label">Draft</label>
-          </div> */}
         </div>
 
         <div className="row mt-4">
