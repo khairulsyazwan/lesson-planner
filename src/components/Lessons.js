@@ -1,4 +1,5 @@
 import React from "react";
+import swal from "sweetalert";
 
 function Lessons({
   lesson,
@@ -8,7 +9,6 @@ function Lessons({
   drafts,
   setDrafts,
   setEdit,
-  edit,
 }) {
   function removeLesson() {
     if (lesson[0].draft) {
@@ -18,6 +18,7 @@ function Lessons({
       setDrafts(mod);
       localStorage.setItem("drafts", JSON.stringify(mod));
       toggleForm();
+      swal("Success!", "Lesson deleted!", "success");
     } else {
       let mod = [...lessons];
       let index = mod.indexOf(lesson[0]);
@@ -25,6 +26,7 @@ function Lessons({
       setLessons(mod);
       localStorage.setItem("lessons", JSON.stringify(mod));
       toggleForm();
+      swal("Success!", "Lesson deleted!", "success");
     }
   }
 
@@ -32,6 +34,7 @@ function Lessons({
     setEdit(lesson);
     toggleForm();
   }
+
   return (
     <div className="mt-2">
       {lesson.map((lesson) => {

@@ -1,7 +1,12 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 
 function List({ lessons, selectOne, setLessons }) {
+  const [aplhAscToggle, setAplhAscToggle] = useState(false);
+  const [aplhDesToggle, setAplhDesToggle] = useState(false);
+  const [dateAscToggle, setDateAscToggle] = useState(false);
+  const [dateDesToggle, setDateDesToggle] = useState(false);
+
   function toggleSort(sortType) {
     let sortedLessons = [...lessons];
     if (sortType === "aDes") {
@@ -18,6 +23,10 @@ function List({ lessons, selectOne, setLessons }) {
         return 0;
       });
       setLessons(c);
+      setAplhDesToggle(true);
+      setAplhAscToggle(false);
+      setDateAscToggle(false);
+      setDateDesToggle(false);
     }
     if (sortType === "aAsc") {
       // ascending subject
@@ -33,6 +42,10 @@ function List({ lessons, selectOne, setLessons }) {
         return 0;
       });
       setLessons(d);
+      setAplhDesToggle(false);
+      setAplhAscToggle(true);
+      setDateAscToggle(false);
+      setDateDesToggle(false);
     }
     if (sortType === "dAsc") {
       // ascending date
@@ -42,6 +55,10 @@ function List({ lessons, selectOne, setLessons }) {
         return bDate - aDate;
       });
       setLessons(b);
+      setAplhDesToggle(false);
+      setAplhAscToggle(false);
+      setDateAscToggle(true);
+      setDateDesToggle(false);
     }
     if (sortType === "dDes") {
       // // decending date
@@ -51,6 +68,10 @@ function List({ lessons, selectOne, setLessons }) {
         return aDate - bDate;
       });
       setLessons(a);
+      setAplhDesToggle(false);
+      setAplhAscToggle(false);
+      setDateAscToggle(false);
+      setDateDesToggle(true);
     }
   }
 
@@ -64,24 +85,28 @@ function List({ lessons, selectOne, setLessons }) {
               <i
                 className="fas fa-sort-alpha-down"
                 onClick={() => toggleSort("aDes")}
+                style={{ color: aplhDesToggle && "rgba(68, 108, 179, 1)" }}
               ></i>
             </div>
             <div className="mx-2">
               <i
                 className="fas fa-sort-alpha-up"
                 onClick={() => toggleSort("aAsc")}
+                style={{ color: aplhAscToggle && "rgba(68, 108, 179, 1)" }}
               ></i>
             </div>
             <div className="mx-2">
               <i
                 className="fas fa-sort-numeric-down"
                 onClick={() => toggleSort("dDes")}
+                style={{ color: dateDesToggle && "rgba(68, 108, 179, 1)" }}
               ></i>
             </div>
             <div className="mx-2">
               <i
                 className="fas fa-sort-numeric-up-alt"
                 onClick={() => toggleSort("dAsc")}
+                style={{ color: dateAscToggle && "rgba(68, 108, 179, 1)" }}
               ></i>
             </div>
           </div>

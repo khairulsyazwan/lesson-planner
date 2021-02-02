@@ -41,6 +41,7 @@
 
 tr.table:hover {
   background-color: rgba(137, 196, 244, 0.5);
+  cursor: pointer;
 }
 
 h5 {
@@ -65,6 +66,8 @@ tr {
 
 .comp {
   height: calc(100vh - 100px);
+  box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+  background-color: white;
 }
 
 .btn-primary {

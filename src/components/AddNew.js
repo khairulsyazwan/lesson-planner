@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import swal from "sweetalert";
 
 function AddNew({
   lessons,
@@ -18,6 +19,7 @@ function AddNew({
   let updatedLessons = lessons;
   let updatedDrafts = drafts;
 
+  console.log(window.innerHeight);
   useEffect(() => {
     setChange(edit[0]);
   }, [edit]);
@@ -85,6 +87,7 @@ function AddNew({
       updatedId = cTemp.id;
       updatedDrafts = temp;
       localStorage.setItem("drafts", JSON.stringify(temp));
+      swal("Success!", "Lesson saved as draft.", "success");
     } else {
       let cTemp = { ...change };
       cTemp = { ...change, draft: draftCheck, id: uuidv4() };
@@ -94,6 +97,7 @@ function AddNew({
       updatedId = cTemp.id;
       updatedLessons = temp;
       localStorage.setItem("lessons", JSON.stringify(temp));
+      swal("Success!", "New lesson added!", "success");
     }
   }
 
@@ -189,7 +193,7 @@ function AddNew({
               onChange={edit ? editChangeHandler : changeHandler}
               className="form-control"
               id="content"
-              rows="10"
+              rows={window.innerHeight < 900 ? 10 : 20}
               defaultValue={edit ? edit[0].content : null}
               required
             />
