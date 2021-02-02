@@ -50,7 +50,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
           <div className="col-md-9">
             <label
               for="subject"
-              class="form-label d-flex justify-content-start"
+              className="form-label d-flex justify-content-start"
             >
               Subject Name
             </label>
@@ -65,12 +65,12 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
               placeholder="Enter subject..."
               name="subject"
               id="subject"
-              class="form-control"
+              className="form-control"
             />
           </div>
           <div className="col-md-2 d-flex align-items-center">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="checkbox"
               id="draft"
               name="draft"
@@ -94,7 +94,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
               placeholder="Enter task..."
               name="date"
               id="date"
-              class="form-control"
+              className="form-control"
             />
           </div>
         </div>

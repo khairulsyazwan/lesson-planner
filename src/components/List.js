@@ -1,11 +1,80 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 
-function List({ lessons, selectOne }) {
+function List({ lessons, selectOne, setLessons }) {
+  function toggleSort(sortType) {
+    let sortedLessons = [...lessons];
+    if (sortType === "aDes") {
+      // descending subject
+      let c = sortedLessons.sort(function (a, b) {
+        let aSub = a.subject.toLowerCase();
+        let bSub = b.subject.toLowerCase();
+        if (aSub < bSub) return -1;
+        if (aSub > bSub) return 1;
+      });
+      setLessons(c);
+    }
+    if (sortType === "aAsc") {
+      // ascending subject
+      let d = sortedLessons.sort(function (a, b) {
+        let aSub = a.subject.toLowerCase();
+        let bSub = b.subject.toLowerCase();
+        if (aSub < bSub) return 1;
+        if (aSub > bSub) return -1;
+      });
+      setLessons(d);
+    }
+    if (sortType === "dAsc") {
+      // ascending date
+      let b = sortedLessons.sort(function (a, b) {
+        let aDate = new Date(a.date);
+        let bDate = new Date(b.date);
+        return bDate - aDate;
+      });
+      setLessons(b);
+    }
+    if (sortType === "dDes") {
+      // // decending date
+      let a = sortedLessons.sort(function (a, b) {
+        let aDate = new Date(a.date);
+        let bDate = new Date(b.date);
+        return aDate - bDate;
+      });
+      setLessons(a);
+    }
+  }
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12">
+          <div className="d-flex justify-content-end">
+            <div>Sort By:</div>
+            <div className="mx-2">
+              <i
+                class="fas fa-sort-alpha-down"
+                onClick={() => toggleSort("aDes")}
+              ></i>
+            </div>
+            <div className="mx-2">
+              <i
+                class="fas fa-sort-alpha-up"
+                onClick={() => toggleSort("aAsc")}
+              ></i>
+            </div>
+            <div className="mx-2">
+              <i
+                class="fas fa-sort-numeric-down"
+                onClick={() => toggleSort("dDes")}
+              ></i>
+            </div>
+            <div className="mx-2">
+              <i
+                class="fas fa-sort-numeric-up-alt"
+                onClick={() => toggleSort("dAsc")}
+              ></i>
+            </div>
+          </div>
           <table class="table">
             <thead>
               <tr>

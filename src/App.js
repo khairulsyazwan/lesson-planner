@@ -78,7 +78,12 @@ function App() {
       <div className="row mt-2">
         <div className="col-md-5">
           {!draftDisplay && (
-            <List lessons={lessons} drafts={drafts} selectOne={selectOne} />
+            <List
+              lessons={lessons}
+              drafts={drafts}
+              selectOne={selectOne}
+              setLessons={setLessons}
+            />
           )}
           {draftDisplay && <Drafts drafts={drafts} selectOne={selectOne} />}
 
@@ -104,7 +109,7 @@ function App() {
                   </button>
                 ) : (
                   <button
-                    className="btn btn-info btn-block"
+                    className="btn btn-primary btn-block"
                     onClick={toggleDraftDisplay}
                   >
                     View Drafts ({drafts.length})
@@ -125,7 +130,9 @@ function App() {
             />
           )}
 
-          {singleDisplay && <Lessons lesson={selected} />}
+          {singleDisplay && (
+            <Lessons lesson={selected} setLessons={setLessons} />
+          )}
         </div>
       </div>
     </div>
