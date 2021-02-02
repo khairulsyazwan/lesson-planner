@@ -7,10 +7,12 @@ function Drafts({ drafts, selectOne }) {
       <div className="row">
         <div className="col-md-12">
           <h2>Drafts</h2>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
-                <th scope="col">Subject</th>
+                <th scope="col" className="col-md-8">
+                  Subject
+                </th>
                 <th scope="col">Date</th>
               </tr>
             </thead>

@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React from "react";
 
 function List({ lessons, selectOne, setLessons }) {
   function toggleSort(sortType) {
@@ -9,8 +9,13 @@ function List({ lessons, selectOne, setLessons }) {
       let c = sortedLessons.sort(function (a, b) {
         let aSub = a.subject.toLowerCase();
         let bSub = b.subject.toLowerCase();
-        if (aSub < bSub) return -1;
-        if (aSub > bSub) return 1;
+        if (aSub < bSub) {
+          return -1;
+        }
+        if (aSub > bSub) {
+          return 1;
+        }
+        return 0;
       });
       setLessons(c);
     }
@@ -19,8 +24,13 @@ function List({ lessons, selectOne, setLessons }) {
       let d = sortedLessons.sort(function (a, b) {
         let aSub = a.subject.toLowerCase();
         let bSub = b.subject.toLowerCase();
-        if (aSub < bSub) return 1;
-        if (aSub > bSub) return -1;
+        if (aSub < bSub) {
+          return 1;
+        }
+        if (aSub > bSub) {
+          return -1;
+        }
+        return 0;
       });
       setLessons(d);
     }
@@ -45,40 +55,42 @@ function List({ lessons, selectOne, setLessons }) {
   }
 
   return (
-    <div className="container">
+    <div>
       <div className="row">
         <div className="col-md-12">
           <div className="d-flex justify-content-end">
             <div>Sort By:</div>
             <div className="mx-2">
               <i
-                class="fas fa-sort-alpha-down"
+                className="fas fa-sort-alpha-down"
                 onClick={() => toggleSort("aDes")}
               ></i>
             </div>
             <div className="mx-2">
               <i
-                class="fas fa-sort-alpha-up"
+                className="fas fa-sort-alpha-up"
                 onClick={() => toggleSort("aAsc")}
               ></i>
             </div>
             <div className="mx-2">
               <i
-                class="fas fa-sort-numeric-down"
+                className="fas fa-sort-numeric-down"
                 onClick={() => toggleSort("dDes")}
               ></i>
             </div>
             <div className="mx-2">
               <i
-                class="fas fa-sort-numeric-up-alt"
+                className="fas fa-sort-numeric-up-alt"
                 onClick={() => toggleSort("dAsc")}
               ></i>
             </div>
           </div>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
-                <th scope="col">Subject</th>
+                <th scope="col" className="col-md-7">
+                  Subject
+                </th>
                 <th scope="col">Date</th>
               </tr>
             </thead>

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgba(202, 201, 201, 0.986);
 }
 
 .App-logo {
@@ -49,4 +50,18 @@ h5 {
 h6,
 h4 {
   text-align: left;
+}
+
+i:hover {
+  color: rgb(17, 17, 179);
+  cursor: pointer;
+}
+
+th,
+tr {
+  text-align: left;
+}
+
+.comp {
+  height: calc(100vh - 100px);
 }

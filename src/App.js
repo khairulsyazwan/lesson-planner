@@ -12,21 +12,21 @@ function App() {
       subject: "English",
       date: "2021-02-10",
       content: "Test 1",
-      id: "l1",
+      id: "37662e62-eafb-42ac-8c93-55416010dce0",
       draft: false,
     },
     {
       subject: "Math",
       date: "2021-02-14",
       content: "Test 2",
-      id: "l2",
+      id: "85cce76f-a15c-42c9-b62b-029f5a4c9ce4",
       draft: false,
     },
     {
       subject: "Music",
       date: "2021-02-25",
       content: "Test 3",
-      id: "l3",
+      id: "ad297239-20de-4fd4-8740-0c39145a1a1c",
       draft: false,
     },
   ]);
@@ -54,85 +54,105 @@ function App() {
 
   function selectOne(e) {
     let select = e.target.classList.value;
-    if (select.includes("l")) {
-      let res = lessons.filter(function (el) {
-        return el.id === select;
-      });
-      setSelected(res);
-      setSingleDisplay(true);
-      setFormDisplay(false);
+
+    let resDraft = drafts.filter(function (el) {
+      return el.id === select;
+    });
+    let resLes = lessons.filter(function (el) {
+      return el.id === select;
+    });
+    if (resDraft.length === 0) {
+      setSelected(resLes);
     } else {
-      let res = drafts.filter(function (el) {
-        return el.id === select;
-      });
-      setSelected(res);
-      setSingleDisplay(true);
-      setFormDisplay(false);
+      setSelected(resDraft);
     }
+    setSingleDisplay(true);
+    setFormDisplay(false);
   }
 
   return (
-    <div className="App">
+    <div className="App vh-100">
       <Header />
 
-      <div className="row mt-2">
-        <div className="col-md-5">
-          {!draftDisplay && (
-            <List
-              lessons={lessons}
-              drafts={drafts}
-              selectOne={selectOne}
-              setLessons={setLessons}
-            />
-          )}
-          {draftDisplay && <Drafts drafts={drafts} selectOne={selectOne} />}
+      <div className="container-fluid">
+        <div className="row my-3">
+          <div className="col-md-5">
+            <div
+              className="container my-2 py-3 border-dark rounded comp"
+              style={{
+                backgroundColor: "white",
+              }}
+            >
+              {!draftDisplay && (
+                <List
+                  lessons={lessons}
+                  drafts={drafts}
+                  selectOne={selectOne}
+                  setLessons={setLessons}
+                />
+              )}
+              {draftDisplay && <Drafts drafts={drafts} selectOne={selectOne} />}
 
-          <div className="row">
-            <div className="container">
-              <div>
-                {!formDisplay && (
-                  <button
-                    className="btn btn-primary btn-block"
-                    onClick={toggleFormDisplay}
-                  >
-                    Add New
-                  </button>
-                )}
-              </div>
-              <div className="mt-2">
-                {draftDisplay ? (
-                  <button
-                    className="btn btn-info btn-block"
-                    onClick={toggleDraftDisplay}
-                  >
-                    View Lessons ({lessons.length})
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-primary btn-block"
-                    onClick={toggleDraftDisplay}
-                  >
-                    View Drafts ({drafts.length})
-                  </button>
-                )}
+              <div className="row">
+                <div className="container">
+                  <div>
+                    {!formDisplay && (
+                      <button
+                        className="btn btn-primary btn-block"
+                        onClick={toggleFormDisplay}
+                      >
+                        Add New
+                      </button>
+                    )}
+                  </div>
+                  <div className="mt-2">
+                    {draftDisplay ? (
+                      <button
+                        className="btn btn-primary btn-block"
+                        onClick={toggleDraftDisplay}
+                      >
+                        View Lessons ({lessons.length})
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-primary btn-block"
+                        onClick={toggleDraftDisplay}
+                      >
+                        View Drafts ({drafts.length})
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="col-md-7">
-          {formDisplay && (
-            <AddNew
-              setLessons={setLessons}
-              lessons={lessons}
-              drafts={drafts}
-              setDrafts={setDrafts}
-            />
-          )}
+          <div className="col-md-7">
+            <div
+              className="container my-2 py-3 border-dark rounded comp"
+              style={{ backgroundColor: "white" }}
+            >
+              {formDisplay && (
+                <AddNew
+                  setLessons={setLessons}
+                  lessons={lessons}
+                  drafts={drafts}
+                  setDrafts={setDrafts}
+                />
+              )}
 
-          {singleDisplay && (
-            <Lessons lesson={selected} setLessons={setLessons} />
-          )}
+              {singleDisplay && (
+                <Lessons
+                  lesson={selected}
+                  setLessons={setLessons}
+                  lessons={lessons}
+                  toggleForm={toggleFormDisplay}
+                  drafts={drafts}
+                  setDrafts={setDrafts}
+                />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

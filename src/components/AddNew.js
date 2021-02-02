@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function AddNew({ lessons, drafts, setLessons, setDrafts }) {
   const [change, setChange] = useState("");
@@ -8,6 +9,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
     setChange((change) => ({
       ...change,
       [e.target.name]: e.target.value,
+      id: uuidv4(),
     }));
   }
 
@@ -26,28 +28,26 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
   function addLesson(change) {
     if (draftCheck) {
       let cTemp = { ...change };
-      cTemp = { ...change, draft: draftCheck, id: `d${drafts.length + 1}` };
+      cTemp = { ...change, draft: draftCheck };
       let temp = [...drafts];
       temp = [...temp, cTemp];
-      // console.log(temp);
       setDrafts(temp);
       localStorage.setItem("drafts", JSON.stringify(temp));
     } else {
       let cTemp = { ...change };
-      cTemp = { ...change, draft: draftCheck, id: `l${lessons.length + 1}` };
+      cTemp = { ...change, draft: draftCheck };
       let temp = [...lessons];
       temp = [...temp, cTemp];
-      // console.log(temp);
       setLessons(temp);
       localStorage.setItem("lessons", JSON.stringify(temp));
     }
   }
 
   return (
-    <div className="container text-left">
+    <div className="">
       <form onSubmit={submitBtn}>
         <div className="row">
-          <div className="col-md-9">
+          <div className="col-md-9 mt-2">
             <label
               for="subject"
               className="form-label d-flex justify-content-start"
@@ -57,7 +57,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
           </div>
         </div>
 
-        <div className="row mt-2">
+        <div className="row mt-1">
           <div className="col-md-10">
             <input
               type="text"
@@ -66,6 +66,7 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
               name="subject"
               id="subject"
               className="form-control"
+              required
             />
           </div>
           <div className="col-md-2 d-flex align-items-center">
@@ -77,15 +78,18 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
               checked={draftCheck}
               onChange={checkBox}
             />
-            <label class="form-check-label" for="draft">
+            <label className="form-check-label" for="draft">
               Draft
             </label>
           </div>
         </div>
 
-        <div className="row mt-2">
-          <div className="col-md-4 ">
-            <label for="date" class="form-label d-flex justify-content-start">
+        <div className="row mt-4">
+          <div className="col-md-6">
+            <label
+              for="date"
+              className="form-label d-flex justify-content-start"
+            >
               Date
             </label>
             <input
@@ -95,31 +99,37 @@ function AddNew({ lessons, drafts, setLessons, setDrafts }) {
               name="date"
               id="date"
               className="form-control"
+              required
             />
           </div>
         </div>
 
-        <div className="row mt-2">
+        <div className="row mt-4">
           <div className="col-md-12">
             <label
               for="comments"
-              class="form-label d-flex justify-content-start"
+              className="form-label d-flex justify-content-start"
             >
               Lesson Content
             </label>
             <textarea
               name="content"
               onChange={changeHandler}
-              class="form-control"
+              className="form-control"
               id="content"
               rows="10"
+              required
             />
           </div>
         </div>
 
         <div className="row">
           <div className="col-12 d-flex justify-content-end">
-            <button type="submit" class="btn mt-3 btn-primary btn-block ">
+            <button
+              type="submit"
+              className="btn mt-3 btn-primary"
+              style={{ width: "100px" }}
+            >
               Save
             </button>
           </div>
